@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sample_app/data/db/database.dart';
 import 'package:flutter_sample_app/domain/models/user.dart';
+import 'package:flutter_sample_app/presentation/ui/userInfoScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -55,6 +56,8 @@ class ListContainerState extends State<ListContainer> {
   Widget buildListItem(BuildContext context, int index) {
     final userItem = items[index];
     return ListTile(
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => UserInfoScreen(userItem))),
       title: Text(userItem.name),
       leading: CircleAvatar(
         backgroundImage: CachedNetworkImageProvider(userItem.avatarUrl),
